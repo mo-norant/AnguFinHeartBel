@@ -41,7 +41,7 @@ export class SignupComponent implements OnInit {
       }).then(
         (success) => {
        
-        console.log(success);
+        console.log("Firebase success: " + JSON.stringify(success));
 
         this.router.navigate(['/login'])
       }).catch(
