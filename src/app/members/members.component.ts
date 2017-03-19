@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
+import { AngularFire, AuthProviders, AuthMethods, FirebaseObjectObservable } from 'angularfire2';
 import { Router } from '@angular/router';
 import { moveIn, fallIn, moveInLeft } from '../router.animations';
 
@@ -14,15 +14,25 @@ import { moveIn, fallIn, moveInLeft } from '../router.animations';
 })
 
 export class MembersComponent implements OnInit {
-  name: any;
-  displayName;
+  
+  username;
+
+
   state: string = '';
 
   constructor(public af: AngularFire, private router: Router) {
 
+
     this.af.auth.subscribe(auth => {
       if (auth) {
-        this.name = auth;
+
+        console.log("uid:" + auth.uid);
+
+        const naam : FirebaseObjectObservable<any> = this.af.database.object(auth.uid+"/username");
+        naam.subscribe(console.log);
+        this.username = naam.subscribe();
+        console.log(this.username.$key)
+       
 
 
       }
@@ -41,16 +51,22 @@ export class MembersComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
+
   remove() {
+
+
+
+
     this.af.auth.subscribe(auth => {
       if (auth) {
-          auth.auth.delete().then(succes => { this.router.navigateByUrl('/login');});
-         
+    const itemObservable = this.af.database.object(auth.uid);
+      itemObservable.remove();
+        auth.auth.delete().then(succes => {
+          this.af.auth.logout();
+          this.router.navigateByUrl('/login');
+        });
 
       }
-
-
-
     });
   }
 

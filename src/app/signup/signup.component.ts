@@ -40,8 +40,11 @@ export class SignupComponent implements OnInit {
       
       }).then(
         (success) => {
-       
-        console.log("Firebase success: " + JSON.stringify(success));
+
+          
+
+       const itemObservable = this.af.database.object(success.uid);
+      itemObservable.set({ username: formData.value.name});
 
         this.router.navigate(['/login'])
       }).catch(
