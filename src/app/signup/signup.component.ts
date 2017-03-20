@@ -46,7 +46,7 @@ export class SignupComponent implements OnInit {
        const itemObservable = this.af.database.object(success.uid);
       itemObservable.set({ username: formData.value.name});
 
-        this.router.navigate(['/login'])
+       this.router.navigate(['/members'])
       }).catch(
         (err) => {
         console.log(err);

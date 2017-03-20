@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFire, AuthProviders, AuthMethods, FirebaseObjectObservable } from 'angularfire2';
+import { AngularFire, AuthProviders, AuthMethods, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2';
 import { Router } from '@angular/router';
 import { moveIn, fallIn, moveInLeft } from '../router.animations';
 
@@ -15,7 +15,7 @@ import { moveIn, fallIn, moveInLeft } from '../router.animations';
 
 export class MembersComponent implements OnInit {
   
-  username;
+  username
 
 
   state: string = '';
@@ -28,9 +28,11 @@ export class MembersComponent implements OnInit {
 
         console.log("uid:" + auth.uid);
 
-        const naam : FirebaseObjectObservable<any> = this.af.database.object(auth.uid+"/username");
-        naam.subscribe(item => this.username = item.$value );
+         const itemObservable = this.af.database.object(auth.uid + "/username");
+      itemObservable.subscribe(item => this.username = item.$value)
         
+        
+         
 
        
 
@@ -53,8 +55,6 @@ export class MembersComponent implements OnInit {
 
 
   remove() {
-
-
 
 
     this.af.auth.subscribe(auth => {
