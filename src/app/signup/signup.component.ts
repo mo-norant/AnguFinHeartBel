@@ -43,6 +43,7 @@ export class SignupComponent implements OnInit {
 
 
 
+<<<<<<< HEAD
           const itemObservable = this.af.database.object('/users/' + success.uid);
           itemObservable.set({ firstname: formData.value.firstname,
                                lastname: formData.value.lastname  });
@@ -51,6 +52,10 @@ export class SignupComponent implements OnInit {
 
           this.router.navigate(['/members'])
         }).catch(
+=======
+       this.router.navigate(['/members'])
+      }).catch(
+>>>>>>> c1e740765feeb05ee5d7e3d9cb8f4097ab69f00a
         (err) => {
           console.log(err);
           this.error = err;
