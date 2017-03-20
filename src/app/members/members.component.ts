@@ -29,9 +29,9 @@ export class MembersComponent implements OnInit {
         console.log("uid:" + auth.uid);
 
         const naam : FirebaseObjectObservable<any> = this.af.database.object(auth.uid+"/username");
-        naam.subscribe(console.log);
-        this.username = naam.subscribe();
-        console.log(this.username.$key)
+        naam.subscribe(item => this.username = item.$value );
+        
+
        
 
 

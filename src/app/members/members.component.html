@@ -2,9 +2,11 @@
     <header [@fallIn]="state">
       <button (click)="logout()" class="basic-btn">Logout</button>
       <button (click)="remove()" class="basic-btn">Remove</button>
+
+      <button (click)="remove()" class="basic-btn">Upload</button>
     </header>
     <div id="page" [@moveInLeft]="state">
-      <h2>Hey {{ username.username }}!</h2>
+      <h2>Hey {{ username }}!</h2>
 
       
     </div>
