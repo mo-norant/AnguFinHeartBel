@@ -60,11 +60,7 @@ export class MembersComponent implements OnInit {
 
 
   remove() {
-<<<<<<< HEAD
-=======
 
-
->>>>>>> c1e740765feeb05ee5d7e3d9cb8f4097ab69f00a
     this.af.auth.subscribe(auth => {
       if (auth) {
     const itemObservable = this.af.database.object(auth.uid);
