@@ -10,7 +10,7 @@ import { moveIn, fallIn } from '../router.animations';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
   animations: [moveIn(), fallIn()],
-  host: {'[@moveIn]': ''}
+  host: { '[@moveIn]': '' }
 })
 
 
@@ -19,10 +19,10 @@ export class SignupComponent implements OnInit {
   state: string = '';
   error: any;
 
-  
-    constructor(public af: AngularFire,private router: Router) {
-    this.af.auth.subscribe(auth => { 
-      if(auth) {
+
+  constructor(public af: AngularFire, private router: Router) {
+    this.af.auth.subscribe(auth => {
+      if (auth) {
         //als user is aangelogd ga naar members anders
         this.router.navigateByUrl('/members');
       }
@@ -30,34 +30,37 @@ export class SignupComponent implements OnInit {
   }
 
 
-//als er een form wordt gesubmit wordt er gechecked of user aan vereisten voldoet, zoja ga naar CreateUser van firebasebibliotheek
+  //als er een form wordt gesubmit wordt er gechecked of user aan vereisten voldoet, zoja ga naar CreateUser van firebasebibliotheek
   onSubmit(formData) {
-    if(formData.valid) {
+    if (formData.valid) {
       console.log(formData.value);
       this.af.auth.createUser({
         email: formData.value.email,
-        password: formData.value.password      
-      
+        password: formData.value.password
+
       }).then(
         (success) => {
 
-          
 
-       const itemObservable = this.af.database.object(success.uid);
-      itemObservable.set({ username: formData.value.name});
 
-       this.router.navigate(['/members'])
-      }).catch(
+          const itemObservable = this.af.database.object('/users/' + success.uid);
+          itemObservable.set({ firstname: formData.value.firstname,
+                               lastname: formData.value.lastname  });
+
+          console.log('/users/' + success.uid);
+
+          this.router.navigate(['/members'])
+        }).catch(
         (err) => {
-        console.log(err);
-        this.error = err;
-      })
+          console.log(err);
+          this.error = err;
+        })
     }
 
   }
 
-  ngOnInit(){
-    
+  ngOnInit() {
+
   }
 
 }

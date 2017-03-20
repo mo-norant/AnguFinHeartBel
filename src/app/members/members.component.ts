@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { moveIn, fallIn, moveInLeft } from '../router.animations';
 
 
+
+
+
 //nieuwe moveInLeft
 @Component({
   selector: 'app-other',
@@ -27,10 +30,12 @@ export class MembersComponent implements OnInit {
       if (auth) {
 
         console.log("uid:" + auth.uid);
-
-         const itemObservable = this.af.database.object(auth.uid + "/username");
-      itemObservable.subscribe(item => this.username = item.$value)
         
+         const itemObservable = this.af.database.object('/users/' + auth.uid + "/firstname");
+        
+      //  itemObservable.subscribe(item => this.username = item.$value)
+                itemObservable.subscribe(item => this.username = item.$value)
+
         
          
 
@@ -55,8 +60,6 @@ export class MembersComponent implements OnInit {
 
 
   remove() {
-
-
     this.af.auth.subscribe(auth => {
       if (auth) {
     const itemObservable = this.af.database.object(auth.uid);
@@ -68,6 +71,11 @@ export class MembersComponent implements OnInit {
 
       }
     });
+  }
+
+
+  uploader(){
+     
   }
 
 
