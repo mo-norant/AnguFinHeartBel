@@ -13,6 +13,7 @@ import { routes } from './app.routes';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 
+
 // Must export the config
 export const firebaseConfig = {
     apiKey: "AIzaSyCipIk2HHAC0cHIi63D-PbaQocDgHS7mok",
