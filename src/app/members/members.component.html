@@ -1,14 +1,18 @@
 <div class="form-container" id="toolbar">
-    <header [@fallIn]="state">
-      <button (click)="logout()" class="basic-btn">Logout</button>
-      <button (click)="remove()" class="basic-btn">Remove</button>
+  <header [@fallIn]="state">
+    <button (click)="logout()" class="basic-btn">Logout</button>
+    <button (click)="remove()" class="basic-btn">Remove</button>
+  </header>
+  <div id="page" [@moveInLeft]="state">
+    <h2>Hey {{ firstname }} {{ lastname }} !</h2>
 
-      <button (click)="remove()" class="basic-btn">Upload</button>
-    </header>
-    <div id="page" [@moveInLeft]="state">
-      <h2>Hey {{ username }}!</h2>
 
-      
-    </div>
-    
+  </div>
+
+  <div id="page" [@moveInLeft]="state">
+
+<h2>TEST</h2>
+
+  </div>
+
 </div>
