@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFire, AuthProviders, AuthMethods, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2';
 import { Router } from '@angular/router';
 import { moveIn, fallIn, moveInLeft } from '../router.animations';
+import {FileUploadModule, GrowlModule , MessagesModule , ToolbarModule} from 'primeng/primeng';
 
 import * as firebase from 'firebase';
 
@@ -34,7 +35,7 @@ export class MembersComponent implements OnInit {
   firstname
   lastname
 
-
+  msgs: any[];
 
   state: string = '';
 
@@ -79,6 +80,23 @@ export class MembersComponent implements OnInit {
       }
     });
   }
+
+
+
+    
+    uploadedFiles: any[] = [];
+
+    onUpload(event) {
+        for(let file of event.files) {
+            this.uploadedFiles.push(file);
+        }
+
+        console.log(this.uploadedFiles.length);
+    
+        this.msgs = [];
+        this.msgs.push({severity: 'info', summary: 'File Uploaded', detail: ''});
+    }
+
 
     fileChange(event) {
 

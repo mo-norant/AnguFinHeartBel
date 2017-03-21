@@ -12,8 +12,23 @@
   <div id="page" [@moveInLeft]="state">
 
     <h2>Upload Zone</h2>
-  <progress value="{{percentage}}" max="100" id="uploader" >0%</progress>
-  <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".json">
+  <p-toolbar>
+    <div class="ui-toolbar-group-left">
+        <button pButton type="button" label="New" icon="fa-plus"></button>
+        <button pButton type="button" label="Open" icon="fa-folder-open"></button>
+            
+        <i class="fa fa-bars"></i>
+        
+        <p-splitButton label="Save" icon="fa-check" [model]="items"></p-splitButton>
+    </div>
+    
+    <div class="ui-toolbar-group-right">
+        <button pButton type="button" icon="fa-search"></button>
+        <i class="fa fa-bars"></i>
+        <button pButton type="button" icon="fa-refresh"></button>
+        <button pButton type="button" icon="fa-trash"></button>
+    </div>
+</p-toolbar>
 
 
   

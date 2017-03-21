@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,  } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
@@ -10,6 +10,7 @@ import { SignupComponent } from './signup/signup.component';
 import { MembersComponent } from './members/members.component';
 import { AuthGuard } from './auth.service';
 import { routes } from './app.routes';
+import {FileUploadModule, GrowlModule , MessagesModule, ToolbarModule} from 'primeng/primeng';
 
 
 
@@ -36,7 +37,12 @@ export const firebaseConfig = {
     FormsModule,
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    routes
+    routes,
+    FileUploadModule,
+    GrowlModule,
+     MessagesModule,
+     ToolbarModule
+
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
