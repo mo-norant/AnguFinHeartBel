@@ -12,10 +12,16 @@
   <div id="page" [@moveInLeft]="state">
 
     <h2>Upload Zone</h2>
-  <progress value="{{percentage}}" max="100" id="uploader" >0%</progress>
+
+
+
+    <progressbar class="progress-striped" [value]="dynamic" >{{dynamic}} %</progressbar>
+
+
+
   <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".json">
 
-
+        <p>{{downloadURL}}</p>
   
   </div>
 

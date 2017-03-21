@@ -5,7 +5,8 @@
 
   <span class="error" *ngIf="error" [@fallIn]='state'>{{ error }}</span>
 
-  <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+  <form
+   #formData='ngForm' (ngSubmit)="onSubmit(formData)">
 
     <input type="text" placeholder="Email address" (ngModel)="email" name="email" class="txt" required>
     <input type="text" placeholder="Firstname" (ngModel)="firstname" name="firstname" class="txt" required>

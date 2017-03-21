@@ -10,6 +10,7 @@ import { SignupComponent } from './signup/signup.component';
 import { MembersComponent } from './members/members.component';
 import { AuthGuard } from './auth.service';
 import { routes } from './app.routes';
+import { ProgressbarModule } from 'ng2-bootstrap';
 
 
 
@@ -29,14 +30,14 @@ export const firebaseConfig = {
     EmailComponent,
     SignupComponent,
     MembersComponent
-    
-  ],
+     ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    routes
+    routes,
+    ProgressbarModule.forRoot()
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

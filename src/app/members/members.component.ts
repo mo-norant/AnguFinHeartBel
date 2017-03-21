@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFire, AuthProviders, AuthMethods, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2';
 import { Router } from '@angular/router';
 import { moveIn, fallIn, moveInLeft } from '../router.animations';
-
 import * as firebase from 'firebase';
+
 
 
 var config = {
@@ -29,14 +29,13 @@ firebase.initializeApp(config);
 
 
 
+
 export class MembersComponent implements OnInit {
 
   firstname
   lastname
-
-
-
-  state: string = '';
+   dynamic
+   max: number = 100;
 
   constructor(public af: AngularFire, private router: Router) {
 
@@ -80,36 +79,48 @@ export class MembersComponent implements OnInit {
     });
   }
 
-    fileChange(event) {
+  fileChange(event) {
 
-      var user = firebase.auth().currentUser;
+    var user = firebase.auth().currentUser;
 
     let fileList: FileList = event.target.files;
-    if(fileList.length > 0) {
-        let file: File = fileList[0];
-        let formData:FormData = new FormData();
-        formData.append('uploadFile', file, file.name);
-        
-        var ref = firebase.storage().ref("/uploadsFinHeartBel/" + user.uid +"/" + new Date().toLocaleString() + ".json");
+    if (fileList.length > 0) {
+      let file: File = fileList[0];
+      let formData: FormData = new FormData();
+      formData.append('uploadFile', file, file.name);
 
+      var ref = firebase.storage().ref("/uploadsFinHeartBel/" + user.uid + "/" + new Date().toLocaleString() + ".json");
       var task = ref.put(file);
 
-      task.on('state_changed'), function progress(snapshot){
-        this.percentage  = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      task.on('state_changed', snapshot => {
+        // Observe state change events such as progress, pause, and resume
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
 
-      },
+        this.dynamic = progress.toFixed(0);
 
-      function error(err){
-        
-      },
-
-      function complete(){
-        console.log("file geupload");
-      }
+        console.log('Upload is ' + progress + '% done');
+        console.log(this.dynamic);
+        switch (snapshot.state) {
+          case firebase.storage.TaskState.PAUSED: // or 'paused'
+            console.log('Upload is paused');
+            break;
+          case firebase.storage.TaskState.RUNNING: // or 'running'
+            console.log('Upload is running');
+            break;
+        }
+      }, error => {
+        // Handle unsuccessful uploads
+      }, function () {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        var downloadURL = task.snapshot.downloadURL;
+        console.log(downloadURL);
+      });
 
     }
-}
+  }
 
 
   ngOnInit() {
