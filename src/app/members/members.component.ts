@@ -54,12 +54,6 @@ export class MembersComponent implements OnInit {
       }
     });
 
-    var user = firebase.auth().currentUser;
-
-    if (user != null) {
-      console.log(user.uid);
-    }
-
   }
 
 
@@ -86,7 +80,36 @@ export class MembersComponent implements OnInit {
     });
   }
 
+    fileChange(event) {
 
+      var user = firebase.auth().currentUser;
+
+    let fileList: FileList = event.target.files;
+    if(fileList.length > 0) {
+        let file: File = fileList[0];
+        let formData:FormData = new FormData();
+        formData.append('uploadFile', file, file.name);
+        
+        var ref = firebase.storage().ref("/uploadsFinHeartBel/" + user.uid +"/" + new Date().toLocaleString() + ".json");
+
+      var task = ref.put(file);
+
+      task.on('state_changed'), function progress(snapshot){
+        this.percentage  = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+
+
+      },
+
+      function error(err){
+        
+      },
+
+      function complete(){
+        console.log("file geupload");
+      }
+
+    }
+}
 
 
   ngOnInit() {
