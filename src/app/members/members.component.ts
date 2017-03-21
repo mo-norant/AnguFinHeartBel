@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFire, AuthProviders, AuthMethods, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2';
 import { Router } from '@angular/router';
 import { moveIn, fallIn, moveInLeft } from '../router.animations';
+import { FileUploader} from 'ng2-file-upload';
 
 
+const URL = 'finheartbel.appspot.com';
 
 
 //nieuwe moveInLeft
@@ -21,6 +23,17 @@ export class MembersComponent implements OnInit {
   
   firstname
   lastname
+  public uploader:FileUploader = new FileUploader({url: URL});
+  public hasBaseDropZoneOver:boolean = false;
+  public hasAnotherDropZoneOver:boolean = false;
+
+  public fileOverBase(e:any):void {
+    this.hasBaseDropZoneOver = e;
+  }
+
+  public fileOverAnother(e:any):void {
+    this.hasAnotherDropZoneOver = e;
+  }
 
 
 
