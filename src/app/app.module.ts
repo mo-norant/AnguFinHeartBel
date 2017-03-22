@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule,  } from '@angular/core';
+import { NgModule, } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
@@ -10,7 +10,10 @@ import { SignupComponent } from './signup/signup.component';
 import { MembersComponent } from './members/members.component';
 import { AuthGuard } from './auth.service';
 import { routes } from './app.routes';
-import {FileUploadModule, GrowlModule , MessagesModule, ToolbarModule} from 'primeng/primeng';
+import { ProgressbarModule } from 'ng2-bootstrap';
+import { ChartsModule } from 'ng2-charts';
+
+
 
 
 
@@ -24,27 +27,24 @@ export const firebaseConfig = {
 };
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    EmailComponent,
-    SignupComponent,
-    MembersComponent
-    
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    AngularFireModule.initializeApp(firebaseConfig),
-    routes,
-    FileUploadModule,
-    GrowlModule,
-     MessagesModule,
-     ToolbarModule
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        EmailComponent,
+        SignupComponent,
+        MembersComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        AngularFireModule.initializeApp(firebaseConfig),
+        routes,
+        ProgressbarModule.forRoot(),
+        ChartsModule
 
-  ],
-  providers: [AuthGuard],
-  bootstrap: [AppComponent]
+    ],
+    providers: [AuthGuard],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -12,26 +12,42 @@
   <div id="page" [@moveInLeft]="state">
 
     <h2>Upload Zone</h2>
-  <p-toolbar>
-    <div class="ui-toolbar-group-left">
-        <button pButton type="button" label="New" icon="fa-plus"></button>
-        <button pButton type="button" label="Open" icon="fa-folder-open"></button>
-            
-        <i class="fa fa-bars"></i>
-        
-        <p-splitButton label="Save" icon="fa-check" [model]="items"></p-splitButton>
-    </div>
-    
-    <div class="ui-toolbar-group-right">
-        <button pButton type="button" icon="fa-search"></button>
-        <i class="fa fa-bars"></i>
-        <button pButton type="button" icon="fa-refresh"></button>
-        <button pButton type="button" icon="fa-trash"></button>
-    </div>
-</p-toolbar>
 
+    <progressbar class="progress-striped" [value]="dynamic">{{dynamic}} %</progressbar>
+    <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".json">
 
-  
+    <p>{{downloadURL}}</p>
+
   </div>
+
+<script src="node_modules/chart.js/src/chart.js"></script>
+
+  <div id="page" [@moveInLeft]="state">
+
+    <h2>Chart Zone</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div style="display: block;">
+          <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+            [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
+      <div class="col-md-6" style="margin-bottom: 10px">
+        <table class="table table-responsive table-condensed">
+          <tr>
+            <th *ngFor="let label of lineChartLabels">{{label}}</th>
+          </tr>
+          <tr *ngFor="let d of lineChartData">
+            <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+          </tr>
+        </table>
+        <button (click)="randomize()">CLICK</button>
+      </div>
+    </div>
+
+
+  </div>
+
 
 </div>
