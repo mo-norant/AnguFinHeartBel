@@ -17,9 +17,18 @@
 }
 
 #email {
-    background: #ECECEC  url('../assets/images/email.svg') no-repeat 25px;
+    background: red  url('../assets/images/email.svg') no-repeat 25px;
+    color:white;
     background-size: 25px;
 }
+
+h2{
+    color:red;
+    text-align: center;
+}
+
+
+
 
 @media (max-width: 600px) {
     #page {

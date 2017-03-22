@@ -21,7 +21,7 @@ button {
 }
 
 .basic-btn {
-    background: #3B8598;
+    background: red;
     color:white;
 }
 
@@ -54,7 +54,7 @@ h2 {
     font-weight:bold;
     text-transform:uppercase;
     font-size:.8em;
-    color:#3B8598;
+    color:red;
 }
 #goback span {
     font-size:1em;

@@ -1,39 +1,7 @@
 <div class="form-container" id="toolbar">
   <header [@fallIn]="state">
-    <button (click)="logout()" class="basic-btn">Logout</button>
-    <button (click)="remove()" class="basic-btn">Remove</button>
-    <button  routerLink="/charts"  class="basic-btn">Charts</button>
-
+    <button routerLink="/members" class="basic-btn">Dashboard</button>
   </header>
-  <div id="page" [@moveInLeft]="state">
-    <h2>Hey {{ firstname }} {{ lastname }} !</h2>
-
-
-  </div>
-
-  <div id="page" [@moveInLeft]="state">
-
-    <h2>Upload Zone</h2>
-
-    <progressbar class="progressbar" [value]="dynamic">{{dynamic}} %</progressbar>
-    <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".json">
-
-    <p>{{downloadURL}}</p>
-
-  </div>
-
-
-  <div id="page" [@moveInLeft]="state">
-    <h2>Chart Zone</h2>
-
-    <style>
-      .chart {
-        display: block;
-        width: 100%;
-      }
-    </style>
-
-    <button type="button" class="btn btn-primary" (click)="clicked($event)">Randomize</button>
 
     <div class="container">
       <div class="row">
@@ -56,6 +24,3 @@
       </div>
 
     </div>
-
-
-  </div>

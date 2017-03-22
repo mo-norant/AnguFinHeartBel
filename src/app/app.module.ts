@@ -12,6 +12,7 @@ import { AuthGuard } from './auth.service';
 import { routes } from './app.routes';
 import { ProgressbarModule } from 'ng2-bootstrap';
 import { ChartsModule } from 'ng2-charts';
+import { ChartComponent } from './chart/chart.component';
 
 
 
@@ -32,7 +33,8 @@ export const firebaseConfig = {
         LoginComponent,
         EmailComponent,
         SignupComponent,
-        MembersComponent
+        MembersComponent,
+        ChartComponent
     ],
     imports: [
         BrowserModule,
